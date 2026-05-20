@@ -3,47 +3,96 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Blog Archive</title>
-
+        <title>Blog | Shane Cardoz</title>
+        <meta
+            name="description"
+            content="Blog archive for systems, kernels, BSD, Linux, and performance writing."
+        />
         <link rel="stylesheet" href="../css/style.css" />
     </head>
-
     <body>
-        <div class="container">
-            <header>
-                <h1>Blog Archive</h1>
-
-                <p class="subtitle">
-                    writings on systems, kernels, BSD and performance
+        <div class="site-shell">
+            <header class="site-header">
+                <p class="prompt-line" aria-label="shell prompt">
+                    <span>shane@freebsd</span>:<span>~</span>$ ls blog/
                 </p>
-
-                <hr />
+                <nav class="prompt-nav" aria-label="primary">
+                    <a href="../index.html">Home</a>
+                    <a aria-current="page" href="index.html">Blog</a>
+                    <a href="../about.html">About</a>
+                    <a href="../notes.html">Notes</a>
+                    <a href="../rss/feed.xml">RSS</a>
+                    <span class="nav-state">theme: system</span>
+                </nav>
             </header>
 
-            <nav>
-                <a href="../index.html">Home</a>
-                <a href="../about.html">About</a>
-            </nav>
-
-            <main>
-                <article>
-                    <h2>
-                        <a href="first-post.html">
-                            My Journey Into Kernel Development
-                        </a>
-                    </h2>
-
-                    <p>
-                        Thoughts on Linux internals and understanding operating
-                        systems deeply.
+            <main id="main-content">
+                <section class="page-section">
+                    <p class="eyebrow">/blog</p>
+                    <h1>Blog Archive</h1>
+                    <p class="lead">
+                        Longer writing on systems, performance, kernels, and the
+                        engineering habits that make those topics easier to
+                        reason about.
                     </p>
-                </article>
+                </section>
+
+                <section class="page-section">
+                    <div class="section-heading">
+                        <h2>Posts</h2>
+                    </div>
+                    <div class="card-list">
+                        <article class="content-card">
+                            <p class="card-meta">2026-05-20 | linux | learning</p>
+                            <h3>
+                                <a href="first-post.html">
+                                    My Journey Into Kernel Development
+                                </a>
+                            </h3>
+                            <p>
+                                A practical account of how kernel work becomes
+                                approachable once curiosity replaces intimidation.
+                            </p>
+                        </article>
+                        <article class="content-card">
+                            <p class="card-meta">
+                                2026-05-20 | memory | performance
+                            </p>
+                            <h3>
+                                <a href="kernel-memory.html">
+                                    Notes on Kernel Memory Pressure
+                                </a>
+                            </h3>
+                            <p>
+                                Short field notes on reclaim behavior, paging
+                                pressure, and what signals matter first.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="page-section link-grid">
+                    <article class="content-card">
+                        <h2><a href="archive.html">Archive</a></h2>
+                        <p>Chronological view of published writing.</p>
+                    </article>
+                    <article class="content-card">
+                        <h2><a href="categories.html">Categories</a></h2>
+                        <p>Browse by systems topic and subject area.</p>
+                    </article>
+                    <article class="content-card">
+                        <h2><a href="tags.html">Tags</a></h2>
+                        <p>Browse smaller technical themes and labels.</p>
+                    </article>
+                </section>
             </main>
 
-            <footer>
-                <hr />
-
-                <p>Built without JavaScript.</p>
+            <footer class="site-footer">
+                <p>Archive pages stay static until a real content workflow is needed.</p>
+                <nav aria-label="footer">
+                    <a href="../sitemap.html">Sitemap</a>
+                    <a href="../rss.html">RSS Info</a>
+                </nav>
             </footer>
         </div>
     </body>

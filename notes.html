@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Notes | Shane Cardoz</title>
+        <meta
+            name="description"
+            content="Short notes, technical fragments, and current lines of thought."
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div class="site-shell">
+            <header class="site-header">
+                <p class="prompt-line" aria-label="shell prompt">
+                    <span>shane@freebsd</span>:<span>~</span>$ tail -f notes.log
+                </p>
+                <nav class="prompt-nav" aria-label="primary">
+                    <a href="index.html">Home</a>
+                    <a href="blog/index.html">Blog</a>
+                    <a href="about.html">About</a>
+                    <a aria-current="page" href="notes.html">Notes</a>
+                    <a href="rss/feed.xml">RSS</a>
+                    <span class="nav-state">theme: system</span>
+                </nav>
+            </header>
+            <main id="main-content">
+                <section class="page-section">
+                    <h1>Notes</h1>
+                    <ul class="log-list">
+                        <li id="site-build">
+                            <span class="log-date">2026-05-20</span>
+                            Plain HTML first. A generator can wait until content
+                            volume justifies it.
+                        </li>
+                        <li id="ebpf-reading">
+                            <span class="log-date">2026-05-18</span>
+                            Tracing is most useful when tied to a narrow
+                            hypothesis, not when used as ambient instrumentation.
+                        </li>
+                        <li id="freebsd">
+                            <span class="log-date">2026-05-12</span>
+                            FreeBSD remains a useful counterexample to bloated
+                            defaults and fragmented system tooling.
+                        </li>
+                    </ul>
+                </section>
+            </main>
+            <footer class="site-footer">
+                <p>Short notes stay short on purpose.</p>
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,25 +1,301 @@
-hr {
-    border: none;
-    border-top: 2px solid #c00000;
+:root {
+    color-scheme: dark light;
+    --bg: #0b0d0c;
+    --surface: #111514;
+    --surface-soft: #151a18;
+    --text: #d9ddd7;
+    --muted: #93a08f;
+    --accent: #5df28a;
+    --accent-soft: #214b2f;
+    --link: #71c7ff;
+    --border: #2a312d;
+    --warning: #e1b45a;
+    --max-width: 72rem;
+    --space-1: 0.5rem;
+    --space-2: 0.75rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-5: 2rem;
+    --space-6: 3rem;
 }
-pre {
-    background: #111;
-    color: #00ff88;
 
-    padding: 15px;
-
-    border-left: 4px solid #00ff88;
-
-    overflow-x: auto;
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #f2efe6;
+        --surface: #f8f5ec;
+        --surface-soft: #ece7da;
+        --text: #1c211d;
+        --muted: #556057;
+        --accent: #0d7d46;
+        --accent-soft: #d3ead9;
+        --link: #005ea8;
+        --border: #c5ccbf;
+        --warning: #8a5a00;
+    }
 }
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Mono", "Fira Code", "Cascadia Mono", "SFMono-Regular",
+        Consolas, "Liberation Mono", Menlo, monospace;
+    line-height: 1.7;
+}
+
 ::selection {
-    background: #c00000;
-    color: white;
-}
-a {
-    color: #c00000;
+    background: var(--accent);
+    color: var(--bg);
 }
 
-a:hover {
-    color: #ff4444;
+a {
+    color: var(--link);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+}
+
+a:hover,
+a:focus-visible {
+    color: var(--accent);
+}
+
+:focus-visible {
+    outline: 2px solid var(--warning);
+    outline-offset: 2px;
+}
+
+p,
+ul,
+blockquote,
+pre {
+    margin: 0;
+}
+
+ul {
+    padding-left: 1.25rem;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    line-height: 1.2;
+    color: var(--text);
+}
+
+h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h2 {
+    font-size: 1.35rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+}
+
+blockquote {
+    padding-left: var(--space-3);
+    border-left: 3px solid var(--accent);
+    color: var(--muted);
+}
+
+.site-shell {
+    width: min(100% - 2rem, var(--max-width));
+    margin: 0 auto;
+    padding: var(--space-5) 0 var(--space-6);
+}
+
+.site-header,
+.site-footer,
+.page-section {
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-4);
+}
+
+.site-header {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: space-between;
+    color: var(--muted);
+}
+
+.site-footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+#main-content {
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+}
+
+.prompt-line,
+.eyebrow,
+.card-meta,
+.post-meta,
+.nav-state,
+.log-date {
+    color: var(--accent);
+}
+
+.prompt-line,
+.eyebrow,
+.card-meta,
+.post-meta {
+    font-size: 0.95rem;
+}
+
+.prompt-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    padding: var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.prompt-nav a,
+.nav-state {
+    display: inline-block;
+}
+
+.prompt-nav a[aria-current="page"] {
+    color: var(--accent);
+}
+
+.hero-section,
+.post-layout {
+    gap: var(--space-3);
+}
+
+.page-section {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.lead {
+    max-width: 64ch;
+    font-size: 1.05rem;
+    color: var(--text);
+}
+
+.section-heading {
+    display: grid;
+    gap: var(--space-1);
+}
+
+.section-heading p {
+    color: var(--muted);
+}
+
+.card-list,
+.link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-3);
+}
+
+.content-card {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.ascii-block {
+    padding: var(--space-3);
+    background: var(--surface);
+    color: var(--accent);
+    border-left: 4px solid var(--accent);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.ascii-hero {
+    max-width: 100%;
+}
+
+.log-list,
+.detail-list,
+.tag-list {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.log-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.log-list li {
+    display: grid;
+    gap: 0.25rem;
+    padding: var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.detail-list li::marker {
+    color: var(--accent);
+}
+
+.tag-list {
+    list-style: none;
+    padding-left: 0;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, max-content));
+}
+
+.tag-list a {
+    display: inline-block;
+    padding: 0.35rem 0.6rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-decoration: none;
+}
+
+.post-header,
+.post-footer,
+.post-nav {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.post-nav {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, max-content));
+}
+
+@media (max-width: 640px) {
+    .site-shell {
+        width: min(100% - 1rem, var(--max-width));
+        padding-top: var(--space-3);
+    }
+
+    .prompt-nav,
+    .content-card,
+    .log-list li,
+    .ascii-block {
+        padding: var(--space-2);
+    }
 }

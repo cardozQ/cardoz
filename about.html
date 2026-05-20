@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>About | Shane Cardoz</title>
+        <meta
+            name="description"
+            content="About Shane Cardoz, technical interests, Unix philosophy, open-source values, and workstation preferences."
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div class="site-shell">
+            <header class="site-header">
+                <p class="prompt-line" aria-label="shell prompt">
+                    <span>shane@freebsd</span>:<span>~</span>$ cat about.txt
+                </p>
+                <nav class="prompt-nav" aria-label="primary">
+                    <a href="index.html">Home</a>
+                    <a href="blog/index.html">Blog</a>
+                    <a aria-current="page" href="about.html">About</a>
+                    <a href="notes.html">Notes</a>
+                    <a href="rss/feed.xml">RSS</a>
+                    <span class="nav-state">theme: system</span>
+                </nav>
+            </header>
+
+            <main id="main-content">
+                <section class="page-section">
+                    <p class="eyebrow">whoami</p>
+                    <h1>About</h1>
+                    <p class="lead">
+                        I am interested in systems programming, operating
+                        systems, observability, performance engineering, and the
+                        mechanics that make software behave well under real
+                        load.
+                    </p>
+                </section>
+
+                <section class="page-section">
+                    <div class="section-heading">
+                        <h2>Bio</h2>
+                    </div>
+                    <p>
+                        This site is where I collect longer technical writing,
+                        shorter notes, and opinions shaped by time spent around
+                        Unix-like systems. I prefer work that reduces mystery:
+                        better tooling, better measurement, and cleaner mental
+                        models.
+                    </p>
+                </section>
+
+                <section class="page-section">
+                    <div class="section-heading">
+                        <h2>Tech Interests</h2>
+                    </div>
+                    <ul class="detail-list">
+                        <li>Kernel development and operating system internals</li>
+                        <li>Linux performance analysis and tracing</li>
+                        <li>FreeBSD system design and tooling</li>
+                        <li>eBPF, profiling, and observability workflows</li>
+                        <li>Networking, schedulers, and memory behavior</li>
+                    </ul>
+                </section>
+
+                <section class="page-section">
+                    <div class="section-heading">
+                        <h2>Unix Philosophy</h2>
+                    </div>
+                    <p>
+                        I prefer tools that are small, explicit, inspectable,
+                        and composable. The site follows the same rule: simple
+                        files, readable source, low moving parts, and content
+                        that stays usable without client-side machinery.
+                    </p>
+                </section>
+
+                <section class="page-section">
+                    <div class="section-heading">
+                        <h2>Open Source</h2>
+                    </div>
+                    <p>
+                        Open source matters because it lets engineers examine
+                        the actual mechanism instead of negotiating with a black
+                        box. Good public code and documentation shorten the path
+                        from confusion to understanding.
+                    </p>
+                </section>
+
+                <section class="page-section">
+                    <div class="section-heading">
+                        <h2>Workstation Setup</h2>
+                    </div>
+                    <pre class="ascii-block" aria-label="workstation setup">
+host:      x86_64 workstation
+editor:    vim / terminal-first tools
+systems:   freebsd, linux
+workflow:  shell, man pages, traces, notes
+browser:   used sparingly, tabs kept on a leash
+                    </pre>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <p>Plain files. Small surface area. Readable output.</p>
+                <nav aria-label="footer">
+                    <a href="sitemap.html">Sitemap</a>
+                    <a href="rss.html">RSS Info</a>
+                </nav>
+            </footer>
+        </div>
+    </body>
+</html>

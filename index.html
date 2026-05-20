@@ -1,8 +1,141 @@
-<pre>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shane Cardoz | Retro Unix Blog</title>
+        <meta
+            name="description"
+            content="Personal site and retro Unix-inspired blog covering FreeBSD, Linux, eBPF, systems work, and performance engineering."
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div class="site-shell">
+            <header class="site-header">
+                <p class="prompt-line" aria-label="shell prompt">
+                    <span>shane@freebsd</span>:<span>~</span>$ ./home
+                </p>
+                <pre class="ascii-block ascii-hero" aria-label="site banner">
  _______ __                            ______              __
 |     __|  |--.---.-.-----.-----.    |      |.-----.----.|  |
 |__     |     |  _  |     |  -__|    |   ---||  _  |   _||__|
 |_______|__|__|___._|__|__|_____|    |______||_____|__|
 
-FreeBSD • Linux • eBPF • Performance Engineering
-</pre>
+FreeBSD | Linux | eBPF | Performance Engineering
+                </pre>
+                <nav class="prompt-nav" aria-label="primary">
+                    <a aria-current="page" href="index.html">Home</a>
+                    <a href="blog/index.html">Blog</a>
+                    <a href="about.html">About</a>
+                    <a href="notes.html">Notes</a>
+                    <a href="rss/feed.xml">RSS</a>
+                    <span class="nav-state">theme: system</span>
+                </nav>
+            </header>
+
+            <main id="main-content">
+                <section class="page-section hero-section">
+                    <p class="eyebrow">/usr/home/shane</p>
+                    <h1>Systems writing with a Unix terminal bias.</h1>
+                    <p class="lead">
+                        I write about operating systems, kernel internals,
+                        performance work, FreeBSD, Linux, and the habits that
+                        make low-level engineering legible.
+                    </p>
+                </section>
+
+                <section class="page-section">
+                    <div class="section-heading">
+                        <h2>Featured Posts</h2>
+                        <p>Longer writing and technical notes.</p>
+                    </div>
+                    <div class="card-list">
+                        <article class="content-card">
+                            <p class="card-meta">featured post</p>
+                            <h3>
+                                <a href="blog/first-post.html">
+                                    My Journey Into Kernel Development
+                                </a>
+                            </h3>
+                            <p>
+                                Why kernels stopped feeling opaque once I
+                                treated them as systems to observe instead of
+                                systems to fear.
+                            </p>
+                        </article>
+                        <article class="content-card">
+                            <p class="card-meta">systems note</p>
+                            <h3>
+                                <a href="blog/kernel-memory.html">
+                                    Notes on Kernel Memory Pressure
+                                </a>
+                            </h3>
+                            <p>
+                                A practical look at reclaim, pressure signals,
+                                and what matters when memory behavior turns into
+                                production behavior.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="page-section">
+                    <div class="section-heading">
+                        <h2>Latest Thoughts</h2>
+                        <p>Short-form notes and references.</p>
+                    </div>
+                    <ul class="log-list">
+                        <li>
+                            <span class="log-date">2026-05-20</span>
+                            <a href="notes.html#site-build">
+                                Building this site in plain HTML and CSS first,
+                                then deciding if a generator is actually
+                                justified.
+                            </a>
+                        </li>
+                        <li>
+                            <span class="log-date">2026-05-18</span>
+                            <a href="notes.html#ebpf-reading">
+                                Good eBPF work starts when tracing is treated as
+                                a debugging discipline, not a novelty.
+                            </a>
+                        </li>
+                        <li>
+                            <span class="log-date">2026-05-12</span>
+                            <a href="notes.html#freebsd">
+                                FreeBSD still teaches useful lessons about
+                                cohesion, defaults, and documentation quality.
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="page-section ascii-panel">
+                    <div class="section-heading">
+                        <h2>System Profile</h2>
+                        <p>Current orientation of the site.</p>
+                    </div>
+                    <pre class="ascii-block" aria-label="system profile">
++----------------------+-------------------------------+
+| stack                | html + css                    |
+| theme mode           | system default                |
+| deployment target    | github pages                  |
+| writing focus        | unix, kernels, performance    |
+| javascript policy    | avoid unless necessary        |
++----------------------+-------------------------------+
+                    </pre>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <p>Built with static HTML, CSS, and a no-JS bias.</p>
+                <nav aria-label="footer">
+                    <a href="sitemap.html">Sitemap</a>
+                    <a href="404.html">404</a>
+                    <a href="rss.html">RSS Info</a>
+                </nav>
+            </footer>
+        </div>
+    </body>
+</html>

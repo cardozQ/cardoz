@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Journey Into Kernel Development | Shane Cardoz</title>
+        <meta
+            name="description"
+            content="A post about learning kernel development by replacing intimidation with observation, tracing, and steady practice."
+        />
+        <link rel="stylesheet" href="../css/style.css" />
+    </head>
+    <body>
+        <div class="site-shell">
+            <header class="site-header">
+                <p class="prompt-line" aria-label="shell prompt">
+                    <span>shane@freebsd</span>:<span>~</span>$ less
+                    first-post.txt
+                </p>
+                <nav class="prompt-nav" aria-label="primary">
+                    <a href="../index.html">Home</a>
+                    <a href="index.html">Blog</a>
+                    <a href="../about.html">About</a>
+                    <a href="../notes.html">Notes</a>
+                    <a href="../rss/feed.xml">RSS</a>
+                    <span class="nav-state">theme: system</span>
+                </nav>
+            </header>
+
+            <main id="main-content">
+                <article class="page-section post-layout">
+                    <header class="post-header">
+                        <p class="eyebrow">article</p>
+                        <h1>My Journey Into Kernel Development</h1>
+                        <p class="post-meta">
+                            Published 2026-05-20 | Category: Linux |
+                            Tags: kernel, learning, systems
+                        </p>
+                    </header>
+
+                    <p class="lead">
+                        Kernel development stopped feeling abstract once I quit
+                        treating the kernel as a sacred object and started
+                        treating it like any other system: something observable,
+                        debuggable, and worth reading slowly.
+                    </p>
+
+                    <p>
+                        My early mental model was wrong in a familiar way. I
+                        assumed kernels belonged to a class of software that
+                        could only be understood by people who had already spent
+                        years inside them. That assumption made everything look
+                        farther away than it was.
+                    </p>
+
+                    <p>
+                        The turning point was not a single book or tutorial. It
+                        was the moment I realized that low-level systems work
+                        still responds to the same discipline as everything else:
+                        inspect state, form a hypothesis, trace behavior, and
+                        refine the model.
+                    </p>
+
+                    <h2>What Helped Most</h2>
+                    <ul class="detail-list">
+                        <li>Reading actual source instead of summaries alone</li>
+                        <li>Using tracing and logs to connect code with runtime</li>
+                        <li>Following one subsystem at a time</li>
+                        <li>Taking notes in plain language after each session</li>
+                    </ul>
+
+                    <p>
+                        A good systems workflow rewards patience. You do not
+                        need to understand the whole kernel to understand the
+                        scheduler path you are reading today, or the allocator
+                        behavior you are tracing this week.
+                    </p>
+
+                    <blockquote>
+                        The real barrier was not complexity alone. It was the
+                        habit of assuming complexity meant inaccessibility.
+                    </blockquote>
+
+                    <p>
+                        That distinction matters. Kernels are complex, but they
+                        are also built by engineers who leave clues: naming,
+                        comments, tracepoints, man pages, subsystem boundaries,
+                        and the shape of past discussions.
+                    </p>
+
+                    <footer class="post-footer">
+                        <nav class="post-nav" aria-label="post navigation">
+                            <a href="index.html">Back to archive</a>
+                            <a href="kernel-memory.html">Next post</a>
+                        </nav>
+                    </footer>
+                </article>
+            </main>
+
+            <footer class="site-footer">
+                <p>Reading time: short and deliberate.</p>
+                <nav aria-label="footer">
+                    <a href="../sitemap.html">Sitemap</a>
+                    <a href="../rss.html">RSS Info</a>
+                </nav>
+            </footer>
+        </div>
+    </body>
+</html>
