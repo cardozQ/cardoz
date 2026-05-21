@@ -5,19 +5,5 @@
         <link>https://shanecardoz.github.io/</link>
         <description>Retro Unix-inspired writing on systems, BSD, Linux, and performance.</description>
         <language>en-us</language>
-        <item>
-            <title>My Journey Into Kernel Development</title>
-            <link>https://shanecardoz.github.io/blog/first-post.html</link>
-            <description>A post about learning kernel development through observation and practice.</description>
-            <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
-            <guid>https://shanecardoz.github.io/blog/first-post.html</guid>
-        </item>
-        <item>
-            <title>Notes on Kernel Memory Pressure</title>
-            <link>https://shanecardoz.github.io/blog/kernel-memory.html</link>
-            <description>Short notes on reclaim, pressure, and runtime memory behavior.</description>
-            <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
-            <guid>https://shanecardoz.github.io/blog/kernel-memory.html</guid>
-        </item>
     </channel>
 </rss>

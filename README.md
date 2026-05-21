@@ -79,7 +79,7 @@ The content system is Markdown-first and publish-to-HTML:
 1. Start from `posts/_template.md`
 2. Write and store the source article in `posts/<slug>.md`
 3. Publish the final page as `blog/<slug>.html`
-4. Update the blog index, homepage listings, and RSS feed
+4. Update the blog index, homepage listings, RSS feed, and sitemaps
 
 This keeps the source material readable and portable while the site remains a plain static HTML project.
 

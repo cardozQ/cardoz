@@ -25,7 +25,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp index.html about.html notes.html 404.html rss.html sitemap.html _site/
+          cp index.html about.html 404.html rss.html sitemap.html _site/
           cp sitemap.xml robots.txt LICENSE _site/
           cp -R css blog rss assets ascii _site/
           find _site -name README.md -delete

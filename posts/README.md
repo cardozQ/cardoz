@@ -14,6 +14,8 @@ Published HTML pages live in `blog/`.
    - `blog/index.html`
    - `index.html` if it should appear on the homepage
    - `rss/feed.xml`
+   - `sitemap.html`
+   - `sitemap.xml`
 
 ## Front Matter
 
