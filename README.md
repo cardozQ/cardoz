@@ -1,4 +1,4 @@
-# Retro Unix Blog
+# Retro Unix Blog(WEbsite gonna go under the Redesign) --->(https://www.welcome-to-the-sunny-side.com/home.html)
 
 Personal website and blog for Shane Cardoz, built as a lightweight static site with a retro Unix and FreeBSD-inspired visual language.
 
