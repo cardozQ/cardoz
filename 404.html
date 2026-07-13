@@ -9,16 +9,72 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <div class="site-shell">
-            <main id="main-content" class="page-section">
-                <p class="eyebrow">error</p>
-                <h1>404</h1>
-                <pre class="ascii-warning" aria-label="not found message">
-sh: requested path not found
-hint: return to /usr/home/shane
-                </pre>
-                <p><a href="index.html">Go back home</a></p>
-            </main>
-        </div>
+        <a class="skip-link" href="#main-content">Skip to content</a>
+        <input
+            class="theme-mode"
+            type="radio"
+            name="theme-mode"
+            id="theme-dark"
+            checked
+        />
+        <input
+            class="theme-mode"
+            type="radio"
+            name="theme-mode"
+            id="theme-light"
+        />
+
+        <nav class="breadcrumb-bar" aria-label="breadcrumb">
+            <a href="index.html" class="crumb-home">~</a>
+            <span class="crumb-sep">/</span>
+            <span class="crumb-current">404</span>
+            <button class="theme-toggle" aria-label="toggle theme">&#9790;</button>
+        </nav>
+
+        <main class="content-panel" id="main-content" tabindex="-1">
+            <div class="content-inner">
+                <section class="page-section">
+                    <h1>404</h1>
+                    <p class="lead">Requested path not found.</p>
+                    <p><a href="index.html">Return to home</a></p>
+                </section>
+            </div>
+        </main>
+
+        <aside class="sidebar" aria-label="terminal">
+            <button class="sidebar-toggle" aria-label="collapse terminal">&#9654;</button>
+            <div class="terminal-content">
+                <div class="terminal-header">shane@freebsd</div>
+                <div class="terminal-output">
+<span class="accent">$</span> <span class="highlight">cd /this/path</span>
+sh: cd: /this/path: No such file or directory
+                </div>
+                <div class="terminal-footer">
+                    <button class="theme-toggle" aria-label="toggle theme">&#9790;</button>
+                </div>
+            </div>
+        </aside>
+
+        <script>
+            document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var dark = document.getElementById('theme-dark');
+                    var light = document.getElementById('theme-light');
+                    if (dark.checked) {
+                        light.checked = true;
+                    } else {
+                        dark.checked = true;
+                    }
+                    var icon = dark.checked ? '\u263E' : '\u2600';
+                    document.querySelectorAll('.theme-toggle').forEach(function(b) {
+                        b.textContent = icon;
+                    });
+                });
+            });
+            document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+                document.querySelector('.sidebar').classList.toggle('sidebar--collapsed');
+                this.textContent = this.textContent === '\u25B6' ? '\u25C0' : '\u25B6';
+            });
+        </script>
     </body>
 </html>

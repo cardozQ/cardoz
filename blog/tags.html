@@ -52,28 +52,83 @@
             name="theme-mode"
             id="theme-light"
         />
-        <div class="site-shell">
-            <header class="site-header">
-                <p class="prompt-line"><span>shane@freebsd</span>:<span>~</span>$ echo $TAGS</p>
-                <nav class="prompt-nav" aria-label="primary">
-                    <a href="../index.html">Home</a>
-                    <a href="index.html">Blog</a>
-                    <a href="categories.html">Categories</a>
-                    <a aria-current="page" href="tags.html">Tags</a>
-                    <a href="../rss/feed.xml">RSS</a>
-                    <span class="theme-switch" aria-label="theme mode">
-                        <label for="theme-dark">dark</label>
-                        <span>/</span>
-                        <label for="theme-light">light</label>
-                    </span>
-                </nav>
-            </header>
-            <main id="main-content" tabindex="-1">
+
+        <nav class="breadcrumb-bar" aria-label="breadcrumb">
+            <a href="../index.html" class="crumb-home">~</a>
+            <span class="crumb-sep">/</span>
+            <span class="crumb-current">blog/tags.html</span>
+            <button class="theme-toggle" aria-label="toggle theme">&#9790;</button>
+        </nav>
+
+        <main class="content-panel" id="main-content" tabindex="-1">
+            <div class="content-inner">
                 <section class="page-section">
                     <h1>Tags</h1>
                     <p>No tags yet.</p>
                 </section>
-            </main>
-        </div>
+            </div>
+
+            <footer class="site-footer">
+                <p>Archive pages stay static until a real content workflow is needed.</p>
+                <nav aria-label="footer">
+                    <a href="../sitemap.html">Sitemap</a>
+                    <a href="../rss.html">RSS Info</a>
+                </nav>
+            </footer>
+        </main>
+
+        <aside class="sidebar" aria-label="terminal">
+            <button class="sidebar-toggle" aria-label="collapse terminal">&#9654;</button>
+            <div class="terminal-content">
+                <div class="terminal-header">shane@freebsd</div>
+                <nav class="terminal-nav" aria-label="terminal navigation">
+                    <a href="../index.html" class="terminal-link">
+                        ~
+                        <span class="muted">home</span>
+                    </a>
+                    <a href="index.html" class="terminal-link">
+                        blog
+                        <span class="muted">ls blog/</span>
+                    </a>
+                    <a href="../about.html" class="terminal-link">
+                        about
+                        <span class="muted">cat about.txt</span>
+                    </a>
+                    <a href="../rss/feed.xml" class="terminal-link">
+                        rss
+                        <span class="muted">echo $RSS</span>
+                    </a>
+                </nav>
+                <div class="terminal-output">
+<span class="accent">$</span> <span class="highlight">echo $TAGS</span>
+(empty)
+                </div>
+                <div class="terminal-footer">
+                    <button class="theme-toggle" aria-label="toggle theme">&#9790;</button>
+                </div>
+            </div>
+        </aside>
+
+        <script>
+            document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var dark = document.getElementById('theme-dark');
+                    var light = document.getElementById('theme-light');
+                    if (dark.checked) {
+                        light.checked = true;
+                    } else {
+                        dark.checked = true;
+                    }
+                    var icon = dark.checked ? '\u263E' : '\u2600';
+                    document.querySelectorAll('.theme-toggle').forEach(function(b) {
+                        b.textContent = icon;
+                    });
+                });
+            });
+            document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+                document.querySelector('.sidebar').classList.toggle('sidebar--collapsed');
+                this.textContent = this.textContent === '\u25B6' ? '\u25C0' : '\u25B6';
+            });
+        </script>
     </body>
 </html>

@@ -1,86 +1,19 @@
-.ascii-block {
-    padding: var(--space-3);
-    color: var(--accent);
-    border-left: 4px solid var(--accent);
+.ascii-separator {
     overflow-x: auto;
+    max-inline-size: 100%;
     white-space: pre;
-    text-shadow: 0 0 0.4rem var(--glow);
+    letter-spacing: 0;
+    color: var(--muted);
+    font-size: 0.85rem;
 }
 
-.ascii-hero {
-    max-width: 100%;
-}
-
-.ascii-panel .ascii-block {
-    background:
-        linear-gradient(180deg, var(--surface-muted), var(--surface));
-}
-
-.ascii-window,
-.ascii-menu,
-.ascii-warning,
-.ascii-separator,
 .ascii-footer-signature {
     overflow-x: auto;
     max-inline-size: 100%;
     white-space: pre;
     letter-spacing: 0;
-}
-
-.ascii-window,
-.ascii-menu,
-.ascii-warning {
-    padding: var(--space-3);
-}
-
-.ascii-window {
-    color: var(--text);
-    background:
-        linear-gradient(180deg, var(--surface-elevated), var(--surface));
-    border-top: 2px solid var(--accent-dim);
-}
-
-.ascii-window-compact {
-    max-width: max-content;
-}
-
-.ascii-menu {
-    color: var(--muted);
-    max-width: max-content;
-}
-
-.ascii-separator {
-    color: var(--muted);
-}
-
-.ascii-warning {
-    color: var(--warning);
-    border-left: 4px solid var(--warning);
-    background:
-        linear-gradient(180deg, var(--surface-muted), var(--surface));
-}
-
-.ascii-footer-signature {
     color: var(--muted);
     text-shadow: none;
-}
-
-.prompt-line,
-.ascii-block {
-    letter-spacing: 0;
-}
-
-@media (max-width: 640px) {
-    .ascii-block,
-    .ascii-window,
-    .ascii-menu,
-    .ascii-warning {
-        padding: var(--space-2);
-        font-size: 0.88rem;
-    }
-
-    .ascii-footer-signature,
-    .ascii-separator {
-        font-size: 0.88rem;
-    }
+    font-size: 0.85rem;
+    margin-left: auto;
 }
