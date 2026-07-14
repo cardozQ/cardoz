@@ -7,10 +7,18 @@ body {
     line-height: 1.7;
 }
 
+body.body--terminal-collapsed {
+    grid-template-columns: 1fr;
+}
+
 @media (min-width: 640px) {
     body {
         grid-template-columns: 1fr auto;
         grid-template-rows: 1fr;
+    }
+
+    body.body--terminal-collapsed {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -92,26 +100,27 @@ body {
 @media (min-width: 640px) {
     .sidebar {
         display: flex;
-        flex-direction: column;
-        width: var(--sidebar-width);
+        flex-direction: row;
+        width: clamp(320px, 30vw, 600px);
         height: 100vh;
         height: 100dvh;
         position: sticky;
         top: 0;
-        background: var(--surface);
-        border-left: var(--line-strong);
-        overflow: hidden;
-        transition: width 0.2s ease, opacity 0.2s ease;
+        background: transparent;
+        overflow: visible;
+        padding: 8px;
     }
 
     .sidebar--collapsed {
-        width: 0;
-        opacity: 0;
-        border-left: none;
+        width: 32px;
     }
 
     body:has(.sidebar--collapsed) {
         grid-template-columns: 1fr;
+    }
+
+    body:has(.sidebar--collapsed) .sidebar {
+        width: 32px;
     }
 }
 
@@ -121,24 +130,104 @@ body {
 
 @media (min-width: 640px) {
     .sidebar-toggle {
+        position: absolute;
+        left: -22px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 22px;
+        height: 64px;
+        background: linear-gradient(135deg, var(--bg, #0a0a0a) 0%, var(--surface-muted, #0d0d0d) 100%);
+        border: 1px solid var(--border);
+        border-right: none;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 100%;
-        padding: var(--space-2);
-        background: var(--surface-elevated);
-        border: none;
-        border-bottom: var(--line-strong);
-        color: var(--muted);
         cursor: pointer;
-        font: inherit;
-        font-size: 0.75rem;
-        transition: color 0.15s ease;
+        color: var(--muted);
+        z-index: 10;
+        font-size: 10px;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 16px var(--shadow, rgba(0,0,0,0.3)), inset 0 1px 0 var(--glow, rgba(100,255,218,0.1));
     }
 
     .sidebar-toggle:hover {
         color: var(--accent);
+        border-color: var(--border-focus);
+        box-shadow: 0 6px 20px var(--shadow, rgba(0,0,0,0.3)), 0 0 0 1px var(--glow-strong, rgba(100,255,218,0.3)), inset 0 1px 0 var(--glow, rgba(100,255,218,0.1));
     }
+}
+
+.terminal-window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, var(--bg, #0a0a0a) 0%, var(--surface-muted, #0d0d0d) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px var(--shadow, rgba(0,0,0,0.3)), inset 0 1px 0 var(--glow, rgba(100,255,218,0.1));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.terminal-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--surface, #111111);
+    border-bottom: 1px solid var(--border);
+    min-height: 32px;
+}
+
+.terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.terminal-dot.red {
+    background: #ff5f56;
+}
+
+.terminal-dot.yellow {
+    background: #ffbd2e;
+}
+
+.terminal-dot.green {
+    background: #27c93f;
+}
+
+.terminal-title {
+    flex: 1;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#terminal {
+    flex: 1;
+    overflow: hidden;
+}
+
+#terminal .xterm {
+    padding: 8px;
+    height: 100%;
+}
+
+.sidebar--collapsed .terminal-window {
+    display: none;
 }
 
 .terminal-content {
@@ -211,23 +300,6 @@ body {
     margin-top: auto;
     padding-top: var(--space-2);
     border-top: var(--line-strong);
-}
-
-.theme-toggle {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius);
-    cursor: pointer;
-    font: inherit;
-    font-size: 0.85rem;
-    transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.theme-toggle:hover {
-    color: var(--accent);
-    border-color: var(--accent);
 }
 
 .page-section {

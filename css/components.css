@@ -113,6 +113,42 @@
     align-content: center;
 }
 
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* xterm.js scrollbar overrides */
+#terminal .xterm .xterm-viewport::-webkit-scrollbar {
+    width: 8px;
+}
+
+#terminal .xterm .xterm-viewport::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+#terminal .xterm .xterm-viewport::-webkit-scrollbar-thumb {
+    background: rgba(100, 255, 218, 0.3);
+    border-radius: 4px;
+}
+
+#terminal .xterm .xterm-viewport::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 255, 218, 0.5);
+}
+
 @media (max-width: 639px) {
     .link-grid {
         grid-template-columns: 1fr;

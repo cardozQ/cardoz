@@ -17,3 +17,25 @@
     font-size: 0.85rem;
     margin-left: auto;
 }
+
+.ascii-beastie {
+    overflow-x: auto;
+    max-inline-size: 100%;
+    white-space: pre;
+    letter-spacing: 0;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    color: var(--accent);
+    padding: var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.ascii-beastie .b-horn {
+    color: var(--muted);
+}
+
+.ascii-beastie .b-body {
+    color: var(--accent);
+}

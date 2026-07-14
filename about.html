@@ -35,6 +35,7 @@
             name="twitter:description"
             content="About Shane Cardoz, technical interests, Unix philosophy, open-source values, and workstation preferences."
         />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/css/xterm.min.css" />
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
@@ -114,6 +115,34 @@
 
                 <section class="page-section">
                     <div class="section-heading">
+                        <h2>Beastie</h2>
+                    </div>
+                    <p>
+                        The BSD Daemon, affectionately known as Beastie, has
+                        been the mascot of the BSD family of operating systems
+                        since the early days. Created by Poul-Henning Kamp and
+                        rendered in ASCII here as a nod to the traditions of
+                        Unix culture and the FreeBSD systems I work with.
+                    </p>
+                    <pre class="ascii-beastie" aria-label="FreeBSD BSD Daemon ASCII art">   ```                        `
+  ` `.....---...  ....--.```   /-
+ +o   .--`         /y:`      +.
+ yo`:.            :o      `+-  
+   y/               -/`   -o/  
+  .-                  ::/sy+:. 
+ /                     `--  /  
+ `:                          :` 
+ `:                          :` 
+  /                          /  
+  .-                        -.
+   --                      -.
+    `:`                  `:`
+      .--             `--.
+         .---.....----.</pre>
+                </section>
+
+                <section class="page-section">
+                    <div class="section-heading">
                         <h2>Open Source</h2>
                     </div>
                     <p>
@@ -149,59 +178,19 @@
 
         <aside class="sidebar" aria-label="terminal">
             <button class="sidebar-toggle" aria-label="collapse terminal">&#9654;</button>
-            <div class="terminal-content">
-                <div class="terminal-header">shane@freebsd</div>
-                <nav class="terminal-nav" aria-label="terminal navigation">
-                    <a href="index.html" class="terminal-link">
-                        ~
-                        <span class="muted">home</span>
-                    </a>
-                    <a href="blog/index.html" class="terminal-link">
-                        blog
-                        <span class="muted">ls blog/</span>
-                    </a>
-                    <a href="about.html" class="terminal-link" aria-current="page">
-                        about
-                        <span class="muted">cat about.txt</span>
-                    </a>
-                    <a href="rss/feed.xml" class="terminal-link">
-                        rss
-                        <span class="muted">echo $RSS</span>
-                    </a>
-                </nav>
-                <div class="terminal-output">
-<span class="accent">$</span> <span class="highlight">cat about.txt</span>
-login:     shane
-shell:     /bin/sh
-hostname:  freebsd
-interest:  systems that explain themselves
+            <div class="terminal-window">
+                <div class="terminal-titlebar">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">shane@freebsd — ~</span>
                 </div>
-                <div class="terminal-footer">
-                    <button class="theme-toggle" aria-label="toggle theme">&#9790;</button>
-                </div>
+                <div id="terminal"></div>
             </div>
         </aside>
 
-        <script>
-            document.querySelectorAll('.theme-toggle').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var dark = document.getElementById('theme-dark');
-                    var light = document.getElementById('theme-light');
-                    if (dark.checked) {
-                        light.checked = true;
-                    } else {
-                        dark.checked = true;
-                    }
-                    var icon = dark.checked ? '\u263E' : '\u2600';
-                    document.querySelectorAll('.theme-toggle').forEach(function(b) {
-                        b.textContent = icon;
-                    });
-                });
-            });
-            document.querySelector('.sidebar-toggle').addEventListener('click', function() {
-                document.querySelector('.sidebar').classList.toggle('sidebar--collapsed');
-                this.textContent = this.textContent === '\u25B6' ? '\u25C0' : '\u25B6';
-            });
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/lib/xterm.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/lib/addon-fit.min.js"></script>
+        <script src="js/terminal.js"></script>
     </body>
 </html>
