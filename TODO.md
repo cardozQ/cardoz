@@ -132,3 +132,31 @@ New skeleton:
 - Test theme toggle (dark/light switching)
 - Verify all links work
 - Check accessibility (skip link, aria labels, focus states)
+
+---
+
+## Phase 8: Bugfixes & Polish
+
+### 8a. COMMANDS array missing entries (`js/terminal.js`)
+- `echo`, `date`, `pwd`, `lsb_release` handled in switch but missing from `COMMANDS` array
+- Tab completion won't suggest them — add to array
+
+### 8b. Duplicate CSS property (`css/layout.css`)
+- `.terminal-window` has `overflow: hidden` declared twice (lines 172, 175)
+- Remove duplicate
+
+### 8c. Duplicated theme code (`js/terminal.js`)
+- `cmdTheme()` and `initThemeToggle()` both inline identical ~80-line dark/light theme objects
+- Extract into shared `setTerminalTheme(isDark)` function
+
+### 8d. Add favicon (all pages)
+- No favicon set — browser tabs show blank page icon
+- Add inline SVG favicon or emoji-based favicon to all HTML pages
+
+### 8e. Post template terminal mismatch (`templates/post-template.html`)
+- Uses static `.terminal-content` sidebar instead of xterm.js interactive terminal
+- Update to match live pages: xterm.js terminal with sidebar toggle
+
+### 8f. Mobile terminal access
+- Terminal is `display: none` on mobile, no way to access it
+- Add a toggle to show/hide terminal on small screens

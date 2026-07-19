@@ -69,7 +69,8 @@
 
     var COMMANDS = [
         "help", "ls", "cd", "cat", "whoami", "uname",
-        "neofetch", "clear", "theme", "exit", "man"
+        "neofetch", "clear", "theme", "exit", "man",
+        "echo", "date", "pwd", "lsb_release"
     ];
 
     var history = [];
@@ -238,68 +239,7 @@
     }
 
     function cmdTheme() {
-        var dark = document.getElementById("theme-dark");
-        var light = document.getElementById("theme-light");
-        if (dark && dark.checked) {
-            light.checked = true;
-        } else if (dark) {
-            dark.checked = true;
-        }
-        var icon = dark && dark.checked ? "\u263E" : "\u2600";
-        document.querySelectorAll(".theme-toggle").forEach(function (b) {
-            b.textContent = icon;
-        });
-        if (term) {
-            if (dark && dark.checked) {
-                term.options.theme = {
-                    background: "#0a0a0a",
-                    foreground: "#d4d4d4",
-                    cursor: "#64ffda",
-                    cursorAccent: "#0a0a0a",
-                    selectionBackground: "rgba(100, 255, 218, 0.2)",
-                    black: "#0a0a0a",
-                    red: "#ff7b72",
-                    green: "#64ffda",
-                    yellow: "#d8b15f",
-                    blue: "#79c0ff",
-                    magenta: "#d2a8ff",
-                    cyan: "#64ffda",
-                    white: "#d4d4d4",
-                    brightBlack: "#737373",
-                    brightRed: "#ff7b72",
-                    brightGreen: "#64ffda",
-                    brightYellow: "#d8b15f",
-                    brightBlue: "#79c0ff",
-                    brightMagenta: "#d2a8ff",
-                    brightCyan: "#64ffda",
-                    brightWhite: "#ffffff"
-                };
-            } else {
-                term.options.theme = {
-                    background: "#ffffff",
-                    foreground: "#171717",
-                    cursor: "#0d9373",
-                    cursorAccent: "#ffffff",
-                    selectionBackground: "rgba(13, 147, 115, 0.2)",
-                    black: "#171717",
-                    red: "#ff7b72",
-                    green: "#0d9373",
-                    yellow: "#875900",
-                    blue: "#0969da",
-                    magenta: "#8250df",
-                    cyan: "#0d9373",
-                    white: "#171717",
-                    brightBlack: "#666666",
-                    brightRed: "#ff7b72",
-                    brightGreen: "#0d9373",
-                    brightYellow: "#875900",
-                    brightBlue: "#0969da",
-                    brightMagenta: "#8250df",
-                    brightCyan: "#0d9373",
-                    brightWhite: "#ffffff"
-                };
-            }
-        }
+        toggleTheme();
     }
 
     function cmdClear() {
@@ -387,6 +327,70 @@
                 println(DIM + "Type 'help' for available commands." + RESET);
                 break;
         }
+    }
+
+    function setTerminalTheme(isDark) {
+        if (!term) return;
+        term.options.theme = isDark ? {
+            background: "#0a0a0a",
+            foreground: "#d4d4d4",
+            cursor: "#64ffda",
+            cursorAccent: "#0a0a0a",
+            selectionBackground: "rgba(100, 255, 218, 0.2)",
+            black: "#0a0a0a",
+            red: "#ff7b72",
+            green: "#64ffda",
+            yellow: "#d8b15f",
+            blue: "#79c0ff",
+            magenta: "#d2a8ff",
+            cyan: "#64ffda",
+            white: "#d4d4d4",
+            brightBlack: "#737373",
+            brightRed: "#ff7b72",
+            brightGreen: "#64ffda",
+            brightYellow: "#d8b15f",
+            brightBlue: "#79c0ff",
+            brightMagenta: "#d2a8ff",
+            brightCyan: "#64ffda",
+            brightWhite: "#ffffff"
+        } : {
+            background: "#ffffff",
+            foreground: "#171717",
+            cursor: "#0d9373",
+            cursorAccent: "#ffffff",
+            selectionBackground: "rgba(13, 147, 115, 0.2)",
+            black: "#171717",
+            red: "#ff7b72",
+            green: "#0d9373",
+            yellow: "#875900",
+            blue: "#0969da",
+            magenta: "#8250df",
+            cyan: "#0d9373",
+            white: "#171717",
+            brightBlack: "#666666",
+            brightRed: "#ff7b72",
+            brightGreen: "#0d9373",
+            brightYellow: "#875900",
+            brightBlue: "#0969da",
+            brightMagenta: "#8250df",
+            brightCyan: "#0d9373",
+            brightWhite: "#ffffff"
+        };
+    }
+
+    function toggleTheme() {
+        var dark = document.getElementById("theme-dark");
+        var light = document.getElementById("theme-light");
+        if (dark && dark.checked) {
+            light.checked = true;
+        } else if (dark) {
+            dark.checked = true;
+        }
+        var icon = dark && dark.checked ? "\u263E" : "\u2600";
+        document.querySelectorAll(".theme-toggle").forEach(function (b) {
+            b.textContent = icon;
+        });
+        setTerminalTheme(dark && dark.checked);
     }
 
     function updateTitlebar(dir) {
@@ -585,6 +589,30 @@
         term.focus();
     }
 
+    function initMobileTerminalToggle() {
+        var toggle = document.querySelector(".term-toggle-mobile");
+        var sidebar = document.querySelector(".sidebar");
+        if (!toggle || !sidebar) return;
+
+        toggle.addEventListener("click", function () {
+            sidebar.classList.toggle("sidebar--visible");
+            if (sidebar.classList.contains("sidebar--visible") && fitAddon) {
+                setTimeout(function () {
+                    try { fitAddon.fit(); } catch (e) {}
+                    if (term) term.focus();
+                }, 250);
+            }
+        });
+
+        document.addEventListener("click", function (e) {
+            if (sidebar.classList.contains("sidebar--visible") &&
+                !sidebar.contains(e.target) &&
+                !toggle.contains(e.target)) {
+                sidebar.classList.remove("sidebar--visible");
+            }
+        });
+    }
+
     function initSidebarToggle() {
         var toggle = document.querySelector(".sidebar-toggle");
         var sidebar = document.querySelector(".sidebar");
@@ -606,70 +634,7 @@
 
     function initThemeToggle() {
         document.querySelectorAll(".theme-toggle").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-                var dark = document.getElementById("theme-dark");
-                var light = document.getElementById("theme-light");
-                if (dark && dark.checked) {
-                    light.checked = true;
-                } else if (dark) {
-                    dark.checked = true;
-                }
-                var icon = dark && dark.checked ? "\u263E" : "\u2600";
-                document.querySelectorAll(".theme-toggle").forEach(function (b) {
-                    b.textContent = icon;
-                });
-                if (term) {
-                    if (dark && dark.checked) {
-                        term.options.theme = {
-                            background: "#0a0a0a",
-                            foreground: "#d4d4d4",
-                            cursor: "#64ffda",
-                            cursorAccent: "#0a0a0a",
-                            selectionBackground: "rgba(100, 255, 218, 0.2)",
-                            black: "#0a0a0a",
-                            red: "#ff7b72",
-                            green: "#64ffda",
-                            yellow: "#d8b15f",
-                            blue: "#79c0ff",
-                            magenta: "#d2a8ff",
-                            cyan: "#64ffda",
-                            white: "#d4d4d4",
-                            brightBlack: "#737373",
-                            brightRed: "#ff7b72",
-                            brightGreen: "#64ffda",
-                            brightYellow: "#d8b15f",
-                            brightBlue: "#79c0ff",
-                            brightMagenta: "#d2a8ff",
-                            brightCyan: "#64ffda",
-                            brightWhite: "#ffffff"
-                        };
-                    } else {
-                        term.options.theme = {
-                            background: "#ffffff",
-                            foreground: "#171717",
-                            cursor: "#0d9373",
-                            cursorAccent: "#ffffff",
-                            selectionBackground: "rgba(13, 147, 115, 0.2)",
-                            black: "#171717",
-                            red: "#ff7b72",
-                            green: "#0d9373",
-                            yellow: "#875900",
-                            blue: "#0969da",
-                            magenta: "#8250df",
-                            cyan: "#0d9373",
-                            white: "#171717",
-                            brightBlack: "#666666",
-                            brightRed: "#ff7b72",
-                            brightGreen: "#0d9373",
-                            brightYellow: "#875900",
-                            brightBlue: "#0969da",
-                            brightMagenta: "#8250df",
-                            brightCyan: "#0d9373",
-                            brightWhite: "#ffffff"
-                        };
-                    }
-                }
-            });
+            btn.addEventListener("click", toggleTheme);
         });
     }
 
@@ -677,11 +642,13 @@
         if (document.readyState === "loading") {
             document.addEventListener("DOMContentLoaded", function () {
                 initSidebarToggle();
+                initMobileTerminalToggle();
                 initThemeToggle();
                 initTerminal();
             });
         } else {
             initSidebarToggle();
+            initMobileTerminalToggle();
             initThemeToggle();
             initTerminal();
         }

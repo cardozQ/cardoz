@@ -3,8 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%2364ffda'/%3E%3Ctext x='2' y='12' font-family='monospace' font-size='11' fill='%230a0a0a'%3E%3E_%3C/text%3E%3C/svg%3E">
         <title>{{ title }} | Shane Cardoz</title>
         <meta name="description" content="{{ description }}" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/css/xterm.min.css" />
         <link rel="stylesheet" href="../css/style.css" />
     </head>
     <body>
@@ -28,6 +30,7 @@
             <span class="crumb-sep">/</span>
             <span class="crumb-current">{{ slug }}.html</span>
             <button class="theme-toggle" aria-label="toggle theme">&#9790;</button>
+            <button class="term-toggle-mobile" aria-label="toggle terminal">&gt;_</button>
         </nav>
 
         <main class="content-panel" id="main-content" tabindex="-1">
@@ -66,56 +69,19 @@
 
         <aside class="sidebar" aria-label="terminal">
             <button class="sidebar-toggle" aria-label="collapse terminal">&#9654;</button>
-            <div class="terminal-content">
-                <div class="terminal-header">shane@freebsd</div>
-                <nav class="terminal-nav" aria-label="terminal navigation">
-                    <a href="../index.html" class="terminal-link">
-                        ~
-                        <span class="muted">home</span>
-                    </a>
-                    <a href="index.html" class="terminal-link">
-                        blog
-                        <span class="muted">ls blog/</span>
-                    </a>
-                    <a href="../about.html" class="terminal-link">
-                        about
-                        <span class="muted">cat about.txt</span>
-                    </a>
-                    <a href="../rss/feed.xml" class="terminal-link">
-                        rss
-                        <span class="muted">echo $RSS</span>
-                    </a>
-                </nav>
-                <div class="terminal-output">
-<span class="accent">$</span> <span class="highlight">less {{ slug }}.txt</span>
-{{ header_block }}
+            <div class="terminal-window">
+                <div class="terminal-titlebar">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">shane@freebsd — ~</span>
                 </div>
-                <div class="terminal-footer">
-                    <button class="theme-toggle" aria-label="toggle theme">&#9790;</button>
-                </div>
+                <div id="terminal"></div>
             </div>
         </aside>
 
-        <script>
-            document.querySelectorAll('.theme-toggle').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var dark = document.getElementById('theme-dark');
-                    var light = document.getElementById('theme-light');
-                    if (dark.checked) {
-                        light.checked = true;
-                    } else {
-                        dark.checked = true;
-                    }
-                    var icon = dark.checked ? '\u263E' : '\u2600';
-                    document.querySelectorAll('.theme-toggle').forEach(function(b) {
-                        b.textContent = icon;
-                    });
-                });
-            });
-            document.querySelector('.sidebar-toggle').addEventListener('click', function() {
-                document.querySelector('.sidebar').classList.toggle('sidebar--collapsed');
-                this.textContent = this.textContent === '\u25B6' ? '\u25C0' : '\u25B6';
-            });
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/lib/xterm.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/lib/addon-fit.min.js"></script>
+        <script src="../js/terminal.js"></script>
     </body>
 </html>
