@@ -304,6 +304,9 @@
         if (s) {
             s.innerHTML = "";
         }
+        if (term) {
+            term.clear();
+        }
     }
 
     function cmdExit() {
