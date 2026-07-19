@@ -105,12 +105,69 @@
         return resolve(clean + ".html");
     }
 
-    function print(text) {
-        term.writeln(text);
+    function getScreen() {
+        return document.getElementById("screen");
+    }
+
+    function screenActivate() {
+        var s = getScreen();
+        if (s) s.classList.add("screen--active");
+    }
+
+    function escapeHtml(text) {
+        return (text || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function convertAnsi(text) {
+        var parts = (text || "").split(/(\x1b\[[0-9;]*m)/);
+        var html = "";
+        var open = 0;
+        var map = {
+            "\x1b[1;36m": "accent bold",
+            "\x1b[1;32m": "green bold",
+            "\x1b[1;33m": "yellow bold",
+            "\x1b[1;31m": "red bold",
+            "\x1b[1;37m": "white bold",
+            "\x1b[1m": "bold",
+            "\x1b[2m": "dim"
+        };
+        for (var i = 0; i < parts.length; i++) {
+            var p = parts[i];
+            if (p && p.charAt(0) === "\x1b") {
+                if (p === "\x1b[0m") {
+                    while (open > 0) { html += "</span>"; open--; }
+                } else {
+                    var cls = map[p];
+                    if (cls) { html += '<span class="screen-line ' + cls + '">'; open++; }
+                }
+            } else if (p) {
+                html += escapeHtml(p);
+            }
+        }
+        while (open > 0) { html += "</span>"; open--; }
+        return html;
     }
 
     function println(text) {
-        term.writeln(text);
+        var s = getScreen();
+        if (!s) return;
+        screenActivate();
+        var lines = (text || "").split("\n");
+        for (var i = 0; i < lines.length; i++) {
+            var div = document.createElement("div");
+            div.className = "screen-line";
+            div.innerHTML = convertAnsi(lines[i]);
+            s.appendChild(div);
+        }
+        s.scrollTop = s.scrollHeight;
+    }
+
+    function print(text) {
+        println(text);
+    }
+
+    function termWriteln(text) {
+        if (term) term.writeln(text);
     }
 
     function cmdHelp() {
@@ -170,12 +227,12 @@
             }
         }
 
-        println(RED + "cd: no such section: " + RESET + arg);
+        termWriteln(RED + "cd: no such section: " + RESET + arg);
     }
 
     function cmdCat(arg) {
         if (!arg) {
-            println(RED + "cat: missing file operand" + RESET);
+            termWriteln(RED + "cat: missing file operand" + RESET);
             return;
         }
 
@@ -197,7 +254,7 @@
             }
         }
 
-        println(RED + "cat: " + arg + ": No such file or directory" + RESET);
+        termWriteln(RED + "cat: " + arg + ": No such file or directory" + RESET);
     }
 
     function cmdWhoami() {
@@ -243,7 +300,11 @@
     }
 
     function cmdClear() {
-        term.clear();
+        var s = getScreen();
+        if (s) {
+            s.innerHTML = "";
+            s.classList.remove("screen--active");
+        }
     }
 
     function cmdExit() {
@@ -260,7 +321,7 @@
 
     function cmdMan(cmd) {
         if (!cmd) {
-            println(RED + "What manual page do you want?" + RESET);
+            termWriteln(RED + "What manual page do you want?" + RESET);
             return;
         }
         var manuals = {
@@ -289,7 +350,7 @@
             }
             println("");
         } else {
-            println(RED + "No manual entry for " + cmd + RESET);
+            termWriteln(RED + "No manual entry for " + cmd + RESET);
         }
     }
 
@@ -323,8 +384,8 @@
                 println("FreeBSD 14.1-RELEASE");
                 break;
             default:
-                println(RED + cmd + ": command not found" + RESET);
-                println(DIM + "Type 'help' for available commands." + RESET);
+                termWriteln(RED + cmd + ": command not found" + RESET);
+                termWriteln(DIM + "Type 'help' for available commands." + RESET);
                 break;
         }
     }
@@ -438,7 +499,7 @@
         var FitAddon = window.FitAddon;
 
         if (!Terminal || !FitAddon) {
-            println(RED + "Error: xterm.js not loaded." + RESET);
+            termWriteln(RED + "Error: xterm.js not loaded." + RESET);
             return;
         }
 
@@ -514,10 +575,9 @@
             var printable = !ev.altKey && !ev.ctrlKey && !ev.metaKey;
 
             if (ev.key === "Enter") {
-                println("");
                 processCommand(currentLine);
                 currentLine = "";
-                term.write(getPrompt());
+                term.write("\r\n" + getPrompt());
             } else if (ev.key === "Backspace") {
                 if (currentLine.length > 0) {
                     currentLine = currentLine.slice(0, -1);
@@ -536,8 +596,8 @@
                     // rewrite: clear current and reprint
                     term.write("\x1b[2K\r" + getPrompt() + currentLine);
                 } else if (completions.length > 1) {
-                    println("");
-                    println("  " + completions.join("  "));
+                    termWriteln("");
+                    termWriteln("  " + completions.join("  "));
                     term.write(getPrompt() + currentLine);
                 }
             } else if (ev.key === "ArrowUp") {
@@ -565,7 +625,7 @@
                 currentLine = "";
             } else if (ev.ctrlKey && ev.key === "c") {
                 ev.preventDefault();
-                println("^C");
+                termWriteln("^C");
                 currentLine = "";
                 term.write(getPrompt());
             } else if (ev.ctrlKey && ev.key === "u") {
