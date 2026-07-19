@@ -303,7 +303,6 @@
         var s = getScreen();
         if (s) {
             s.innerHTML = "";
-            s.classList.remove("screen--active");
         }
     }
 
