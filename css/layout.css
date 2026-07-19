@@ -92,12 +92,13 @@ body.body--terminal-collapsed {
         width: 100%;
         height: 100%;
         z-index: 20;
-        padding: 8px;
+        padding: 0;
         background: var(--bg);
     }
 
     .sidebar.sidebar--visible .terminal-window {
         display: flex;
+        border-left: none;
     }
 
     .sidebar.sidebar--visible .sidebar-toggle {
@@ -126,9 +127,9 @@ body.body--terminal-collapsed {
         height: 100dvh;
         position: sticky;
         top: 0;
-        background: transparent;
+        background: var(--bg);
         overflow: visible;
-        padding: 8px;
+        padding: 0;
     }
 
     .sidebar--collapsed {
@@ -151,16 +152,14 @@ body.body--terminal-collapsed {
 @media (min-width: 640px) {
     .sidebar-toggle {
         position: absolute;
-        left: -22px;
+        left: -20px;
         top: 50%;
         transform: translateY(-50%);
-        width: 22px;
-        height: 64px;
-        background: linear-gradient(135deg, var(--bg, #0a0a0a) 0%, var(--surface-muted, #0d0d0d) 100%);
+        width: 20px;
+        height: 48px;
+        background: var(--surface);
         border: 1px solid var(--border);
         border-right: none;
-        border-top-left-radius: 8px;
-        border-bottom-left-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -168,15 +167,13 @@ body.body--terminal-collapsed {
         color: var(--muted);
         z-index: 10;
         font-size: 10px;
-        transition: all 0.2s ease;
-        backdrop-filter: blur(8px);
-        box-shadow: 0 4px 16px var(--shadow, rgba(0,0,0,0.3)), inset 0 1px 0 var(--glow, rgba(100,255,218,0.1));
+        font-family: monospace;
+        transition: background 0.15s ease, color 0.15s ease;
     }
 
     .sidebar-toggle:hover {
+        background: var(--surface-elevated);
         color: var(--accent);
-        border-color: var(--border-focus);
-        box-shadow: 0 6px 20px var(--shadow, rgba(0,0,0,0.3)), 0 0 0 1px var(--glow-strong, rgba(100,255,218,0.3)), inset 0 1px 0 var(--glow, rgba(100,255,218,0.1));
     }
 }
 
@@ -189,50 +186,27 @@ body.body--terminal-collapsed {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    background: linear-gradient(135deg, var(--bg, #0a0a0a) 0%, var(--surface-muted, #0d0d0d) 100%);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px var(--shadow, rgba(0,0,0,0.3)), inset 0 1px 0 var(--glow, rgba(100,255,218,0.1));
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--bg);
+    border-left: 1px solid var(--border);
 }
 
 .terminal-titlebar {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 12px;
-    background: var(--surface, #111111);
+    padding: 6px 10px;
+    background: var(--surface);
     border-bottom: 1px solid var(--border);
-    min-height: 32px;
-}
-
-.terminal-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
-.terminal-dot.red {
-    background: #ff5f56;
-}
-
-.terminal-dot.yellow {
-    background: #ffbd2e;
-}
-
-.terminal-dot.green {
-    background: #27c93f;
+    min-height: 28px;
+    user-select: none;
 }
 
 .terminal-title {
-    flex: 1;
-    text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--muted);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    letter-spacing: 0.02em;
 }
 
 #terminal {
@@ -241,8 +215,12 @@ body.body--terminal-collapsed {
 }
 
 #terminal .xterm {
-    padding: 8px;
     height: 100%;
+}
+
+#terminal .xterm .xterm-screen {
+    padding: 4px 8px;
+    box-sizing: border-box;
 }
 
 .sidebar--collapsed .terminal-window {
