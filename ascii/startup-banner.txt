@@ -1,7 +1,0 @@
-Booting shanecardoz.github.io ...
-
-[ ok ] loading page shell
-[ ok ] attaching ascii interface
-[ ok ] mounting blog archive
-[ ok ] enabling rss endpoint
-[ ok ] entering userland
