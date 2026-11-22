@@ -1,0 +1,22 @@
+# Secrets and credentials
+.env
+.env.*
+*.key
+*.pem
+*.token
+credentials*
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# Emacs generated files
+eln-cache/
+auto-save-list/
+recentf
+.cache/
+
+# System-specific temporary files
+.DS_Store
+Thumbs.db
